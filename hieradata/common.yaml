@@ -288,7 +288,7 @@ profile::web_services::apache::website_hash:
     repo_source: 'git://github.com/beergeek/animal.git'
     repo_provider: git
   'コントロール_レポ.puppetlabs.vm':
-    docroot: 'rob'
+    docroot: 'コントロール_レポ'
     repo_source: 'git://github.com/beergeek/rob.git'
     database_search: "Mysql_database['rob']"
     repo_provider: git
@@ -299,8 +299,8 @@ profile::web_services::apache::website_defaults:
   repo_provider: git
 profile::web_services::iis::enable_firewall: *enable_firewall
 profile::web_services::iis::website_hash:
-  'elmo.puppetlabs.vm':
-    docroot: 'elmo'
+  'コントロール_レポ.puppetlabs.vm':
+    docroot: 'コントロール_レポ'
     database_search: "Mysql_database['elmo']"
     site_package: 'website_test'
   'kermit.puppetlabs.vm':

@@ -125,7 +125,7 @@ class profile::mom {
       }
     }
 
-    file { '/etc/puppetlabs/code/hiera.yaml':
+    file { '/etc/puppetlabs/puppet/hiera.yaml':
       ensure  => file,
       owner   => 'root',
       group   => 'root',

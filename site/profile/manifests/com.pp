@@ -102,25 +102,27 @@ class profile::com {
       before   => File['/etc/puppetlabs/code/hiera.yaml'],
     }
 
-    file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
-      ensure  => file,
-      owner   => 'pe-puppet',
-      group   => 'pe-puppet',
-      mode    => '0600',
-      content => file('/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem'),
-      before   => File['/etc/puppetlabs/code/hiera.yaml'],
+    if $manage_eyaml {
+      file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
+        ensure  => file,
+        owner   => 'pe-puppet',
+        group   => 'pe-puppet',
+        mode    => '0600',
+        content => file('/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem'),
+        before   => File['/etc/puppetlabs/code/hiera.yaml'],
+      }
+
+      file { '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem':
+        ensure  => file,
+        owner   => 'pe-puppet',
+        group   => 'pe-puppet',
+        mode    => '0644',
+        content => file('/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem'),
+        before   => File['/etc/puppetlabs/code/hiera.yaml'],
+      }
     }
 
-    file { '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem':
-      ensure  => file,
-      owner   => 'pe-puppet',
-      group   => 'pe-puppet',
-      mode    => '0644',
-      content => file('/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem'),
-      before   => File['/etc/puppetlabs/code/hiera.yaml'],
-    }
-
-    file { '/etc/puppetlabs/code/hiera.yaml':
+    file { '/etc/puppetlabs/puppet/hiera.yaml':
       ensure  => file,
       owner   => 'root',
       group   => 'root',
