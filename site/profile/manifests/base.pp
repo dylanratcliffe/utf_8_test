@@ -6,6 +6,8 @@ class profile::base {
     noop()
   }
 
+  include profile::japan
+
   case $::kernel {
     'linux': {
       $sysctl_settings  = hiera('profile::base::sysctl_settings')

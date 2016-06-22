@@ -33,6 +33,12 @@ profile::time_locale::noop_scope: false
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
+# japan test
+profile::japan::users:
+  - 'ブレット'
+  - 'ディラン'
+  - 'ジェシー'
+
 # DNS
 profile::dns::name_servers:
   - 10.0.2.3
