@@ -332,3 +332,6 @@ profile::database_services::sqlerver::db_hash:
 profile::puppet_users::user_hash:
   brett:
     manage_user: true
+  ブレット:
+    manage_user: true
+
