@@ -37,20 +37,20 @@ class profile::web_services::apache {
       priority       => $website['priority'],
     }
 
-    if $website['repo_source'] {
-      vcsrepo { $site_name:
-        ensure   => present,
-        path     => $_docroot,
-        provider => $website['repo_provider'],
-        source   => $website['repo_source'],
-        require  => Apache::Vhost[$site_name],
-      }
-    } elsif $website['site_package'] {
-      package { $website['site_package']:
-        ensure => present,
-        tag    => 'custom',
-      }
-    }
+    #if $website['repo_source'] {
+    #  vcsrepo { $site_name:
+    #    ensure   => present,
+    #    path     => $_docroot,
+    #    provider => $website['repo_provider'],
+    #    source   => $website['repo_source'],
+    #    require  => Apache::Vhost[$site_name],
+    #  }
+    #} elsif $website['site_package'] {
+    #  package { $website['site_package']:
+    #    ensure => present,
+    #    tag    => 'custom',
+    #  }
+    #}
   }
 
 }
