@@ -328,3 +328,7 @@ profile::database_services::sqlerver::db_hash:
     password: 'jdfknvkjdfnk'
   kermit:
     password: 'jdfknvkjdfnk))##'
+
+profile::puppet_users::user_hash:
+  brett:
+    manage_user: true
