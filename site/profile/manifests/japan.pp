@@ -1,5 +1,7 @@
 class profile::japan {
 
+  $user_array = hiera_array('profile::japan::user_array')
+
   # This class is not best practises, it is for testing only.
   case $::kernel {
     'Linux': {
