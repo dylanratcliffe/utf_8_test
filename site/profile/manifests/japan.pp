@@ -6,12 +6,12 @@ class profile::japan {
       $user_path = '/home/'
       $user_gid  = 'オージー'
       $user_groups = undef
-    },
+    }
     'Windows': {
       $user_path = 'C:\\Users\\'
       $user_gid  = undef
       $user_groups = 'オージー'
-    },
+    }
     default: {
       fail("Oh, I am sorry you are using some shitty OS")
     }
