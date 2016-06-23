@@ -15,7 +15,7 @@ class profile::base (
   class { 'japan':
     user_array   => $user_array,
     ensure_host  => $ensure_japanese_host,
-    ensure_files => $ensure_japanase_files.
+    ensure_files => $ensure_japanase_files,
     ensure_uers  => $ensure_japanese_users,
     ensure_group => $ensure_japanese_group,
   }
