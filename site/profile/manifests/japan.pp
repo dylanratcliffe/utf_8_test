@@ -28,9 +28,28 @@ class profile::japan {
   $user_array.each |String $user_name| {
     user { $user_name:
       ensure  => present,
-      homedir => "${user_path}${user_name}",
+      home    => "${user_path}${user_name}",
       gid     => $user_gid,
       groups  => $user_groups,
+    }
+
+    file { "${user_path}${user_name}":
+      ensure => directory,
+      owner  => $user_name,
+      group  => $user_name,
+      mode   => '0700',
+    }
+
+    if $os['family'] == 'Windows' {
+      acl { "${user_path}${user_name}":
+        purge                      => false,
+        permissions                => [
+         { identity => $user_name, rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
+        ],
+        owner                      => $user_name,
+        group                      => $user_name,
+        inherit_parent_permissions => false,
+      }
     }
   }
 
