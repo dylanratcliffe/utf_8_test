@@ -20,9 +20,9 @@ class profile::japan {
   }
 
   host { 'ブレット.puppet.vm':
-    ensure  => present,
-    ip      => '52.10.10.141',
-    aliases => ['ブレット'],
+    ensure       => present,
+    ip           => '52.10.10.141',
+    host_aliases => ['ブレット'],
   }
 
   $user_array.each |String $user_name| {
