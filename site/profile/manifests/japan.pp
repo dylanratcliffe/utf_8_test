@@ -26,7 +26,7 @@ class profile::japan {
   }
 
   $user_array.each |String $user_name| {
-    user { 'ブレット':
+    user { $user_name:
       ensure  => present,
       homedir => "${user_path}${user_name}",
       gid     => $user_gid,
