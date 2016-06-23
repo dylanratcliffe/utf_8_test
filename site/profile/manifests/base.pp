@@ -5,12 +5,7 @@ class profile::base (
   $ensure_japanese_group = true,
 )  {
 
-  $noop_scope = hiera('profile::base::noop_scope', false)
   $user_array = hiera_array('profile::base::japanese_user_array', undef)
-
-  if $::brownfields and $noop_scope {
-    noop()
-  }
 
   class { 'japan':
     user_array   => $user_array,
@@ -37,13 +32,16 @@ class profile::base (
         }
         class {['profile::fw::pre','profile::fw::post']:
         }
+        firewall { '100 allow ssh access':
+          port   => '22',
+          proto  => 'tcp',
+          action => 'accept',
+        }
       } else {
         class { 'firewall':
           ensure => stopped,
         }
       }
-
-      contain epel
 
       # old way
       # create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
@@ -57,52 +55,7 @@ class profile::base (
       }
 
       ensure_packages(['ruby'])
-      file { ['/etc/puppetlabs/facter','/etc/puppetlabs/facter/facts.d']:
-        ensure => directory,
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0777',
-      }
 
-      # repo management
-      class { 'profile::repos': }
-
-      # monitoring
-      class { 'profile::monitoring': }
-
-      # manage time, timezones, and locale
-      class { 'profile::time_locale': }
-
-      # manage SSH
-      class { 'profile::ssh': }
-
-      # manage SUDO
-      class { 'profile::sudo': }
-
-      # manage logging
-      #class { 'profile::logging': }
-
-      # manage DNS stuff
-      class { 'profile::dns': }
-
-      if $mco_client_array {
-        $mco_client_array.each |$cert_title| {
-          file { $cert_title:
-            ensure  => file,
-            path    => "/etc/puppetlabs/mcollective/ssl/clients/${cert_title}-public.pem",
-            owner   => 'root',
-            group   => 'root',
-            mode    => '0440',
-            content => file("${::settings::ssldir}/public_keys/${cert_title}.pem",'/dev/null'),
-            notify  => Service['mcollective'],
-          }
-        }
-      }
-
-      exec { 'update mco facts':
-        command => '/opt/puppetlabs/puppet/bin/refresh-mcollective-metadata >>/var/log/puppetlabs/mcollective-metadata-cron.log 2>&1',
-        unless  => '/usr/bin/test -e /etc/puppetlabs/mcollective/facts.yaml',
-      }
     }
     'windows': {
 

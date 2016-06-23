@@ -17,18 +17,8 @@ variables:
   - &manage_heira true
   - &r10k_sources
     base:
-      remote: 'https://github.com/beergeek/puppet_env.git'
+      remote: 'https://github.com/beergeek/japan_test.git'
       basedir: '/etc/puppetlabs/code/environments'
-
-profile::base::noop_scope: false
-profile::dns::noop_scope: false
-profile::fw::noop_scope: false
-profile::logging::noop_scope: false
-profile::monitoring::noop_scope: false
-profile::repos::noop_scope: false
-profile::ssh::noop_scope: false
-profile::sudo::noop_scope: false
-profile::time_locale::noop_scope: false
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
@@ -38,46 +28,6 @@ profile::base::japanese_user_array:
   - 'ブレット'
   - 'ディラン'
   - 'ジェシー'
-
-# DNS
-profile::dns::name_servers:
-  - 10.0.2.3
-profile::dns::purge: false
-
-# SSH
-profile::ssh::enable_firewall: *enable_firewall
-profile::ssh::banner_content: "This system is the property of Puppet Labs. Unauthorised access is not permitted"
-profile::ssh::allowed_groups:
-  - 'root'
-  - 'vagrant'
-profile::ssh::options_hash:
-  Port: 22
-  AcceptEnv: 'LANG LC_*'
-  ChallengeResponseAuthentication: no
-  PermitRootLogin: yes
-  PrintMotd: no
-  Subsystem: 'sftp /usr/libexec/openssh/sftp-server'
-  UsePAM: yes
-  X11Forwarding: yes
-
-# SUDO
-profile::sudo::sudo_hash:
-  vagrant:
-    priority: 10
-    content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
-profile::sudo::sudo_hash_defaults:
-  priority: 50
-profile::sudo::sudo_purge: true
-profile::sudo::sudo_replace_config: true
-
-# LOGGING
-profile::logging::log_local: true
-profile::logging::port: 514
-profile::logging::remote_servers: false
-profile::logging::remote_type: 'tcp'
-profile::logging::rotate: 10
-profile::logging::rotate_every: 'day'
-profile::logging::size: '200k'
 
 # COM
 profile::com::manage_r10k: *manage_r10k
@@ -185,47 +135,8 @@ profile::mom::node_groups_defaults:
   parent: 'All Nodes'
 
 
-# Load Balancer
-profile::lb_services::enable_firewall: *enable_firewall
-profile::lb_services::listeners:
-  stats:
-    collect_exported: false
-    ipaddress: "%{::ipaddress_eth1}"
-    ports: '9090'
-    options:
-      mode: 'http'
-      stats: ['uri /', 'auth puppet:puppet']
-  http00:
-    collect_exported: true
-    ipaddress: "%{::ipaddress_eth1}"
-    ports: '80'
-    options:
-      mode: 'tcp'
-  https00:
-    collect_exported: true
-    ipaddress: "%{::ipaddress_eth1}"
-    ports: '443'
-    options:
-      mode: 'tcp'
-  puppet00:
-    collect_exported: true
-    ipaddress: "%{::ipaddress_eth1}"
-    ports: '8140'
-    options:
-      mode: 'tcp'
-  mco00:
-    collect_exported: true
-    ipaddress: "%{::ipaddress_eth1}"
-    ports: '61613'
-    options:
-      mode: 'tcp'
-      balance: 'source'
-
 # BASE
 profile::base::enable_firewall: *enable_firewall
-profile::base::mco_client_array:
-  - 'com0.puppetlabs.vm-peadmin'
-  - 'com1.puppetlabs.vm-peadmin'
 profile::base::wsus_server: 'http://wsus_server.local'
 profile::base::wsus_server_port: '8530'
 
@@ -276,68 +187,4 @@ profile::base::sysctl_settings:
 profile::base::sysctl_defaults:
   ensure: present
   permanent: 'yes'
-
-# WEB_SERVICES
-profile::web_services::apache::enable_firewall: *enable_firewall
-profile::web_services::apache::website_hash:
-  'elmo.puppetlabs.vm':
-    docroot: 'elmo'
-    database_search: "Mysql_database['elmo']"
-    site_package: 'website_test'
-  'kermit.puppetlabs.vm':
-    docroot: 'kermit'
-    repo_source: 'git://github.com/beergeek/kermit.git'
-    repo_provider: git
-    database_search: "Mysql_database['kermit']"
-  'animal.puppetlabs.vm':
-    docroot: 'animal'
-    repo_source: 'git://github.com/beergeek/animal.git'
-    repo_provider: git
-  'コントロール_レポ.puppetlabs.vm':
-    docroot: 'コントロール_レポ'
-    repo_source: 'git://github.com/beergeek/rob.git'
-    database_search: "Mysql_database['rob']"
-    repo_provider: git
-profile::web_services::apache::website_defaults:
-  port: '80'
-  priority: '10'
-  docroot: '/var/www/${title}'
-  repo_provider: git
-profile::web_services::iis::enable_firewall: *enable_firewall
-profile::web_services::iis::website_hash:
-  'コントロール_レポ.puppetlabs.vm':
-    docroot: 'コントロール_レポ'
-    database_search: "Mysql_database['elmo']"
-    site_package: 'website_test'
-  'kermit.puppetlabs.vm':
-    docroot: 'kermit'
-    repo_source: 'git://github.com/beergeek/kermit.git'
-    database_search: "Mysql_database['kermit']"
-  'animal.puppetlabs.vm':
-    docroot: 'animal'
-    repo_source: 'git://github.com/beergeek/animal.git'
-  'rob.puppetlabs.vm':
-    docroot: 'rob'
-    repo_source: 'git://github.com/beergeek/rob.git'
-    database_search: "Mysql_database['rob']"
-
-# DATABASE_SERVICES
-profile::database_services::mysql::enable_firewall: *enable_firewall
-profile::database_services::mysql::db_hash:
-  elmo: {}
-  kermit: {}
-profile::database_services::mysql::db_defaults:
-  user: 'vmware'
-  password: 'secret'
-profile::database_services::sqlerver::db_hash:
-  elmo:
-    password: 'jdfknvkjdfnk'
-  kermit:
-    password: 'jdfknvkjdfnk))##'
-
-profile::puppet_users::user_hash:
-  brett:
-    manage_user: true
-#  ブレット:
-#    manage_user: true
 
