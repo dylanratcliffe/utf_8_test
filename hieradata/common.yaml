@@ -28,6 +28,11 @@ profile::base::japanese_user_array:
   - 'ブレット'
   - 'ディラン'
   - 'ジェシー'
+profile::base::ファイル＿配列:
+  'ファイル＿2':
+    content: 'hi there'
+  'ファイル＿3':
+    content: 'hi there'
 
 # COM
 profile::com::manage_r10k: *manage_r10k
