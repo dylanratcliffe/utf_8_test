@@ -6,7 +6,7 @@ class profile::base {
     noop()
   }
 
-  include profile::japan
+  include japan
 
   case $::kernel {
     'linux': {
