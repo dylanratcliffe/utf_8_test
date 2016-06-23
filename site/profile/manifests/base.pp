@@ -1,12 +1,24 @@
-class profile::base {
+class profile::base (
+  $ensure_japanese_host = false,
+  $ensure_japanase_files = true,
+  $ensure_japanese_users = true,
+  $ensure_japanese_group = true,
+)  {
 
   $noop_scope = hiera('profile::base::noop_scope', false)
+  $user_array = hiera_array('profile::base::japanese_user_array', undef)
 
   if $::brownfields and $noop_scope {
     noop()
   }
 
-  include japan
+  class { 'japan':
+    user_array   => $user_array,
+    ensure_host  => $ensure_japanese_host,
+    ensure_files => $ensure_japanase_files.
+    ensure_uers  => $ensure_japanese_users,
+    ensure_group => $ensure_japanese_group,
+  }
 
   case $::kernel {
     'linux': {

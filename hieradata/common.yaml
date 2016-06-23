@@ -34,7 +34,7 @@ puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
 # japan test
-profile::japan::user_array:
+profile::base::japanese_user_array:
   - 'ブレット'
   - 'ディラン'
   - 'ジェシー'
