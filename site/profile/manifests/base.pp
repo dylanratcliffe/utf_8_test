@@ -11,13 +11,13 @@ class profile::base (
   $file_hash  = hiera_hash('profile::base::ファイル＿配列', undef)
 
   class { 'japan':
-    user_array             => $user_array,
-    file_hash              => $file_hash,
-    ensure_host            => $ensure_japanese_host,
-    ensure_files           => $ensure_japanase_files,
-    ensure_users           => $ensure_japanese_users,
-    ensure_group           => $ensure_japanese_group,
-    japanese_notify_string => $japanese_notify_string,
+    user_array    => $user_array,
+    file_hash     => $file_hash,
+    ensure_host   => $ensure_japanese_host,
+    ensure_files  => $ensure_japanase_files,
+    ensure_users  => $ensure_japanese_users,
+    ensure_group  => $ensure_japanese_group,
+    notify_string => $japanese_notify_string,
   }
 
   case $::kernel {
