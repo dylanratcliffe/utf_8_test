@@ -48,6 +48,8 @@ class profile::base (
         }
       }
 
+      include profile::time_locale
+
       # old way
       # create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
       # new way
