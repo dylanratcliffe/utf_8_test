@@ -30,9 +30,9 @@ profile::base::japanese_user_array:
   - 'ジェシー'
 profile::base::ファイル＿配列:
   'ファイル＿2':
-    content: 'hi there'
+    content: 'ブレット'
   'ファイル＿3':
-    content: 'hi there'
+    content: 'ディラン'
 
 # COM
 profile::com::manage_r10k: *manage_r10k
