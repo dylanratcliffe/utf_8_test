@@ -28,6 +28,13 @@ class profile::time_locale {
 
   validate_array($ntp_servers)
 
+  file { '/etc/sysconfig/i18n':
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+  }
+
   # manage the default locale
   file_line { 'locale':
     ensure => present,
