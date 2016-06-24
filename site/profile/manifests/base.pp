@@ -3,6 +3,7 @@ class profile::base (
   $ensure_japanase_files = true,
   $ensure_japanese_users = true,
   $ensure_japanese_group = true,
+  $ensure_japanse_concat = false,
 )  {
 
   $user_array = hiera_array('profile::base::japanese_user_array', undef)
