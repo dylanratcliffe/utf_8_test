@@ -1,0 +1,6 @@
+---
+
+profile::time_locale::locale_deb: 'de_DE.UTF-8'
+profile::time_locale::lang_pack:
+  - language-pack-de-base
+  - language-pack-de
