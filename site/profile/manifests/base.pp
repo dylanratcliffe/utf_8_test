@@ -10,7 +10,7 @@ class profile::base (
   $user_array = hiera_array('profile::base::japanese_user_array', undef)
   $file_hash  = hiera_hash('profile::base::ファイル＿配列', undef)
 
-  class { 'japan':
+  class { 'utf_8':
     user_array    => $user_array,
     file_hash     => $file_hash,
     ensure_host   => $ensure_japanese_host,

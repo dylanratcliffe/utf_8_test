@@ -53,5 +53,5 @@ mod 'ssh',
   :git => 'https://github.com/beergeek/puppet-ssh.git'
 mod 'make_noop',
   :git => 'https://github.com/beergeek/make_noop.git'
-mod 'japan',
-  :git => 'https://github.com/beergeek/japan.git'
+mod 'utf_8',
+  :git => 'https://github.com/beergeek/utf_8.git'
