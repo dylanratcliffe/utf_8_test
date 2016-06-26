@@ -23,7 +23,7 @@ variables:
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
-# japan test
+# UTF-8 test
 profile::base::japanese_user_array:
   - 'ブレット'
   - 'ディラン'
