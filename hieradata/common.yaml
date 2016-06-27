@@ -17,14 +17,14 @@ variables:
   - &manage_heira true
   - &r10k_sources
     base:
-      remote: 'https://github.com/beergeek/japan_test.git'
+      remote: 'https://github.com/beergeek/utf_8_test.git'
       basedir: '/etc/puppetlabs/code/environments'
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
 # UTF-8 test
-profile::base::japanese_user_array:
+profile::base::utf_8_user_array:
   - 'ブレット'
   - 'ディラン'
   - 'ジェシー'

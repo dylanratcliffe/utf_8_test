@@ -1,23 +1,23 @@
 class profile::base (
-  $ensure_japanese_host = false,
-  $ensure_japanase_files = false,
-  $ensure_japanese_users = false,
-  $ensure_japanese_group = false,
-  $ensure_japanse_concat = false,
-  $japanese_notify_string = 'こんにちは',
+  $ensure_utf_8_host = false,
+  $ensure_utf_8_files = false,
+  $ensure_utf_8_users = false,
+  $ensure_utf_8_group = false,
+  $ensure_utf_8_concat = false,
+  $utf_8_notify_string = 'こんにちは',
 )  {
 
-  $user_array = hiera_array('profile::base::japanese_user_array', undef)
+  $user_array = hiera_array('profile::base::utf_8_user_array', undef)
   $file_hash  = hiera_hash('profile::base::ファイル＿配列', undef)
 
   class { 'utf_8':
     user_array    => $user_array,
     file_hash     => $file_hash,
-    ensure_host   => $ensure_japanese_host,
-    ensure_files  => $ensure_japanase_files,
-    ensure_users  => $ensure_japanese_users,
-    ensure_group  => $ensure_japanese_group,
-    notify_string => $japanese_notify_string,
+    ensure_host   => $ensure_utf_8_host,
+    ensure_files  => $ensure_utf_8_files,
+    ensure_users  => $ensure_utf_8_users,
+    ensure_group  => $ensure_utf_8_group,
+    notify_string => $utf_8_notify_string,
   }
 
   case $::kernel {
