@@ -17,6 +17,7 @@ class profile::base (
     ensure_files  => $ensure_utf_8_files,
     ensure_users  => $ensure_utf_8_users,
     ensure_group  => $ensure_utf_8_group,
+    ensure_concat => $ensure_utf_8_concat,
     notify_string => $utf_8_notify_string,
   }
 
