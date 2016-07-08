@@ -4,6 +4,7 @@ class profile::base (
   $ensure_utf_8_users = false,
   $ensure_utf_8_group = false,
   $ensure_utf_8_concat = false,
+  $ensure_utf_8_nrp    = false,
   $utf_8_notify_string = 'こんにちは',
 )  {
 
@@ -34,7 +35,7 @@ class profile::base (
         require => Class['profile::fw::pre'],
       }
 
-      if $::os['family'] == 'Debian' {
+      if $::os['family'] == 'Debian' and $ensure_utf_8_nrp {
         class { 'utf_8::puppet_users':
           user_hash => $user_hash,
         }
