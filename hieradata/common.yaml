@@ -39,13 +39,13 @@ profile::base::ファイル＿配列:
 profile::base::user_hash:
   ジェフ:
     manage_user: true
-    user_values: geoff
+    ascii_name: geoff
   ロニー:
     manage_user: true
-    user_values: ronny
+    ascii_name: ronny
   ジェームズ:
     manage_user: true
-    user_values: james
+    ascii_name: james
 
 # COM
 profile::com::manage_r10k: *manage_r10k
