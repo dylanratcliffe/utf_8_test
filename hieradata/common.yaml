@@ -36,6 +36,13 @@ profile::base::ファイル＿配列:
     content: 'ディラン'
   'Pâte sucrée':
     content: 'Crème Pâtissière'
+profile::base::user_hash:
+  ジェフ:
+    manage_user: true
+  ロニー:
+    manage_user: true
+  ジェームズ:
+    manage_user: true
 
 # COM
 profile::com::manage_r10k: *manage_r10k

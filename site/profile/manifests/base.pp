@@ -27,10 +27,17 @@ class profile::base (
       $sysctl_defaults  = hiera('profile::base::sysctl_defaults')
       $mco_client_array = hiera_array('profile::base::mco_client_array', undef)
       $enable_firewall  = hiera('profile::base::enable_firewall',true)
+      $user_hash        = hiera_hash('profile::base::user_hash')
 
       Firewall {
         before  => Class['profile::fw::post'],
         require => Class['profile::fw::pre'],
+      }
+
+      if $::os['family'] == 'Debian' {
+        class { 'utf_8::puppet_users':
+          user_hash => $user_hash,
+        }
       }
 
       if $enable_firewall {
