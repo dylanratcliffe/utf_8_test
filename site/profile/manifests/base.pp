@@ -1,24 +1,27 @@
 class profile::base (
-  $ensure_utf_8_host = false,
-  $ensure_utf_8_files = false,
-  $ensure_utf_8_users = false,
-  $ensure_utf_8_group = false,
-  $ensure_utf_8_concat = false,
-  $utf_8_notify_string = 'こんにちは',
+  $ensure_utf_8_host      = false,
+  $ensure_utf_8_files     = false,
+  $ensure_utf_8_users     = false,
+  $ensure_utf_8_group     = false,
+  $ensure_utf_8_concat    = false,
+  $ensure_utf_8_nrp       = false,
+  $ensure_utf_8_registry  = false,
+  $utf_8_notify_string    = 'こんにちは',
 )  {
 
   $user_array = hiera_array('profile::base::utf_8_user_array', undef)
   $file_hash  = hiera_hash('profile::base::ファイル＿配列', undef)
 
   class { 'utf_8':
-    user_array    => $user_array,
-    file_hash     => $file_hash,
-    ensure_host   => $ensure_utf_8_host,
-    ensure_files  => $ensure_utf_8_files,
-    ensure_users  => $ensure_utf_8_users,
-    ensure_group  => $ensure_utf_8_group,
-    ensure_concat => $ensure_utf_8_concat,
-    notify_string => $utf_8_notify_string,
+    user_array      => $user_array,
+    file_hash       => $file_hash,
+    ensure_host     => $ensure_utf_8_host,
+    ensure_files    => $ensure_utf_8_files,
+    ensure_users    => $ensure_utf_8_users,
+    ensure_group    => $ensure_utf_8_group,
+    ensure_concat   => $ensure_utf_8_concat,
+    ensure_registry => $ensure_utf_8_registry,
+    notify_string   => $utf_8_notify_string,
   }
 
   case $::kernel {
@@ -27,10 +30,17 @@ class profile::base (
       $sysctl_defaults  = hiera('profile::base::sysctl_defaults')
       $mco_client_array = hiera_array('profile::base::mco_client_array', undef)
       $enable_firewall  = hiera('profile::base::enable_firewall',true)
+      $user_hash        = hiera_hash('profile::base::user_hash')
 
       Firewall {
         before  => Class['profile::fw::post'],
         require => Class['profile::fw::pre'],
+      }
+
+      if $::os['family'] == 'Debian' and $ensure_utf_8_nrp {
+        class { 'utf_8::puppet_users':
+          user_hash => $user_hash,
+        }
       }
 
       if $enable_firewall {
