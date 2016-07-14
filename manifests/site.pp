@@ -11,7 +11,7 @@ site {
   # }
 
   utf_8::app { 'English':
-    message => fqdn_rand_string('15','wub','seed'),
+    message => seeded_rand(1001,'seed'),
     nodes   => {
       Node['node0.puppet.vm'] => Utf_8::Component_one['English_first'],
       Node['node1.puppet.vm'] => Utf_8::Component_one['English_second'],
