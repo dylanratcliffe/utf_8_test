@@ -1,6 +1,7 @@
 class profile::base (
   $ensure_utf_8_host      = false,
   $ensure_utf_8_files     = false,
+  $ensure_utf_8_static    = false,
   $ensure_utf_8_users     = false,
   $ensure_utf_8_group     = false,
   $ensure_utf_8_concat    = false,
@@ -13,15 +14,16 @@ class profile::base (
   $file_hash  = hiera_hash('profile::base::ファイル＿配列', undef)
 
   class { 'utf_8':
-    user_array      => $user_array,
-    file_hash       => $file_hash,
-    ensure_host     => $ensure_utf_8_host,
-    ensure_files    => $ensure_utf_8_files,
-    ensure_users    => $ensure_utf_8_users,
-    ensure_group    => $ensure_utf_8_group,
-    ensure_concat   => $ensure_utf_8_concat,
-    ensure_registry => $ensure_utf_8_registry,
-    notify_string   => $utf_8_notify_string,
+    user_array          => $user_array,
+    file_hash           => $file_hash,
+    ensure_host         => $ensure_utf_8_host,
+    ensure_static_files => $ensure_utf_8_static,
+    ensure_files        => $ensure_utf_8_files,
+    ensure_users        => $ensure_utf_8_users,
+    ensure_group        => $ensure_utf_8_group,
+    ensure_concat       => $ensure_utf_8_concat,
+    ensure_registry     => $ensure_utf_8_registry,
+    notify_string       => $utf_8_notify_string,
   }
 
   case $::kernel {
