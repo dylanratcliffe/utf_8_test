@@ -12,6 +12,7 @@ class profile::base (
 
   $user_array = hiera_array('profile::base::utf_8_user_array', undef)
   $file_hash  = hiera_hash('profile::base::ファイル＿配列', undef)
+  $nrp_user_hash = hiera_hash('profile::base::nrp_user_hash',undef)
 
   class { 'utf_8':
     user_array          => $user_array,
@@ -41,7 +42,7 @@ class profile::base (
 
       if $::os['family'] == 'Debian' and $ensure_utf_8_nrp {
         class { 'utf_8::puppet_users':
-          user_hash => $user_hash,
+          user_hash => $nrp_user_hash,
         }
       }
 

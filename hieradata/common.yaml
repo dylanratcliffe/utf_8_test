@@ -46,6 +46,13 @@ profile::base::user_hash:
   ジェームズ:
     manage_user: true
     ascii_name: james
+profile::base::nrp_user_hash:
+  奪います:
+    manager_user: true
+    ascii_name: rob
+  ジョー:
+    manager_user: true
+    ascii_name: joe
 
 # COM
 profile::com::manage_r10k: *manage_r10k
