@@ -3,7 +3,7 @@ class profile::repos {
   $repo_hash          = hiera_hash('profile::repos::repo_hash', undef)
   $repo_default_hash  = hiera('profile::repos::repo_default_hash', undef)
   $apt_hash           = hiera_hash('profile::repos::apt_hash', undef)
-  $apt_default_hash   = heira('profile::repos::apt_default_hash', undef)
+  $apt_default_hash   = hiera('profile::repos::apt_default_hash', undef)
   $collect_repos      = hiera('profile::repos::collect_repos', true)
 
   if $repo_hash and $repo_default_hash and $::os['family'] == 'RedHat' {
