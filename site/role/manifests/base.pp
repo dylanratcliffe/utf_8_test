@@ -7,6 +7,8 @@ class role::base (
   $ensure_utf_8_concat    = false,
   $ensure_utf_8_nrp       = false,
   $ensure_utf_8_registry  = false,
+  $ensure_utf_8_exported  = false,
+  $ensure_utf_8_virtual   = false,
   $utf_8_notify_string    = 'こんにちは',
 ) {
 
@@ -19,6 +21,8 @@ class role::base (
     ensure_utf_8_concat   => $ensure_utf_8_concat,
     ensure_utf_8_nrp      => $ensure_utf_8_nrp,
     ensure_utf_8_registry => $ensure_utf_8_registry,
+    ensure_utf_8_exported => $ensure_utf_8_exported,
+    ensure_utf_8_virtual  => $ensure_utf_8_virtual,
     utf_8_notify_string   => $utf_8_notify_string,
   }
 }

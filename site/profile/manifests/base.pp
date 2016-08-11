@@ -7,6 +7,8 @@ class profile::base (
   $ensure_utf_8_concat    = false,
   $ensure_utf_8_nrp       = false,
   $ensure_utf_8_registry  = false,
+  $ensure_utf_8_exported  = false,
+  $ensure_utf_8_virtual   = false,
   $utf_8_notify_string    = 'こんにちは',
 )  {
 
@@ -24,6 +26,8 @@ class profile::base (
     ensure_group        => $ensure_utf_8_group,
     ensure_concat       => $ensure_utf_8_concat,
     ensure_registry     => $ensure_utf_8_registry,
+    ensure_exported     => $ensure_utf_8_exported,
+    ensure_virtual      => $ensure_utf_8_virtual,
     notify_string       => $utf_8_notify_string,
   }
 
