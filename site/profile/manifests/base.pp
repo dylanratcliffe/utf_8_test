@@ -40,6 +40,9 @@ class profile::base (
         require => Class['profile::fw::pre'],
       }
 
+      include profile::dns
+      include profile::repos
+
       if $::os['family'] == 'Debian' and $ensure_utf_8_nrp {
         class { 'utf_8::puppet_users':
           user_hash => $nrp_user_hash,
