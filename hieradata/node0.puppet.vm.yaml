@@ -22,7 +22,6 @@ profile::repo_server::repo_data:
   'custom.puppet.vm':
     baseurl: 'http://custom.puppet.vm'
     descr: 'Custom app code repo'
-    enabled: 0
     tag: 'custom_yum_packages'
 profile::repo_server::repo_defaults:
   ensure: present
