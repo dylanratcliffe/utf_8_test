@@ -33,6 +33,7 @@ class profile::repos {
     Yumrepo<| tag == 'custom_yum_packages'|> -> Package <| tag == 'custom' |>
   }
   if $collect_repos and $::os['family'] == 'Debian' {
+    include apt
     Apt::Source <<| |>>
 
     Apt::Source<| tag == 'custom_apt_packages' |> -> Package<| tag == 'custom' |>

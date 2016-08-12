@@ -30,6 +30,7 @@ profile::repo_server::repo_defaults:
 profile::repo_server::apt_data:
   'apt.puppet.vm':
     location: 'http://apt.puppet.vm'
+    release: 'stable'
     tag: 'custom_apt_packages'
 profile::repo_server::apt_defaults:
   repos: 'main'
