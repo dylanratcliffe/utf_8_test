@@ -48,10 +48,10 @@ profile::base::user_hash:
     ascii_name: james
 profile::base::nrp_user_hash:
   奪います:
-    manager_user: true
+    manage_user: true
     ascii_name: rob
   ジョー:
-    manager_user: true
+    manage_user: true
     ascii_name: joe
 
 # COM
