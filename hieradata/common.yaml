@@ -20,6 +20,8 @@ variables:
       remote: 'https://github.com/beergeek/utf_8_test.git'
       basedir: '/etc/puppetlabs/code/environments'
 
+puppet_enterprise::profile::certificate_authority::client_whitelist:
+  - 'master.puppet.vm'
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
