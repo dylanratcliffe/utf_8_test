@@ -9,12 +9,17 @@ class profile::base (
   $ensure_utf_8_registry  = false,
   $ensure_utf_8_exported  = false,
   $ensure_utf_8_virtual   = false,
+  $ensure_utf_8_lookup    = false,
   $utf_8_notify_string    = 'こんにちは',
 )  {
 
-  $user_array = hiera_array('profile::base::utf_8_user_array', undef)
-  $file_hash  = hiera_hash('profile::base::ファイル＿配列', undef)
-  $nrp_user_hash = hiera_hash('profile::base::nrp_user_hash',undef)
+  if $ensure_utf_8_lookup {
+    $lookup_data = lookup('profile::base::utf_8_lookup')
+  } else {
+    $user_array = hiera_array('profile::base::utf_8_user_array', undef)
+    $file_hash  = hiera_hash('profile::base::ファイル＿配列', undef)
+    $nrp_user_hash = hiera_hash('profile::base::nrp_user_hash',undef)
+  }
 
   class { 'utf_8':
     user_array          => $user_array,
@@ -29,6 +34,7 @@ class profile::base (
     ensure_exported     => $ensure_utf_8_exported,
     ensure_virtual      => $ensure_utf_8_virtual,
     notify_string       => $utf_8_notify_string,
+    lookup_data         => $lookup_data,
   }
 
   case $::kernel {
