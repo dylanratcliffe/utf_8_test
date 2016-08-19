@@ -55,7 +55,7 @@ profile::base::nrp_user_hash:
   ジョー:
     manage_user: true
     ascii_name: joe
-profile::base::lookup_data: "Freude, schöner Götterfunken. Tochter aus Elysium, Wir betreten feuertrunken, Himmlische, dein Heiligtum! Deine Zauber binden wieder Was die Mode streng geteilt; Alle Menschen werden Brüder, Wo dein sanfter Flügel weilt."
+profile::base::utf_8_lookup: "Freude, schöner Götterfunken. Tochter aus Elysium, Wir betreten feuertrunken, Himmlische, dein Heiligtum! Deine Zauber binden wieder Was die Mode streng geteilt; Alle Menschen werden Brüder, Wo dein sanfter Flügel weilt."
 
 # COM
 profile::com::manage_r10k: *manage_r10k
