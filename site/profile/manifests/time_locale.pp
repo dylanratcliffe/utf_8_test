@@ -45,13 +45,14 @@ class profile::time_locale {
       line   => "LANG=${locale_rhel}",
       match  => 'LANG=',
     }
-  } elsif $os['family'] == 'debian' {
-    package { $lang_pack: }
+  } elsif $::os['family'] == 'debian' {
+    if $::os['name'] == 'ubuntu' {
+      package { $lang_pack: }
+    }
 
     class { 'locales':
       locales        => any2array($locale_deb),
       default_locale => $locale_deb,
-      require        => Package[$lang_pack],
     }
   }
 
