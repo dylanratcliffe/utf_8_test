@@ -1,3 +1,4 @@
 ---
 
 profile::time_locale::locale_deb: 'de_DE.UTF-8 UTF-8'
+profile::time_locale::locale_deb_base: 'de_DE.UTF-8'

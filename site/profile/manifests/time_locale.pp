@@ -26,7 +26,8 @@ class profile::time_locale {
   $timezone     = hiera('profile::time_locale::timezone')
   $locale_rhel  = hiera('profile::time_locale::locale_rhel')
   $locale_deb   = hiera('profile::time_locale::locale_deb')
-  $lang_pack    = hiera('profile::time_locale::lang_pack')
+  $locale_deb_base = hiera('profile::time_locale::locale_deb_base','de_DE-.UTF-8')
+  $lang_pack    = hiera('profile::time_locale::lang_pack', undef)
 
   validate_array($ntp_servers)
 
@@ -46,13 +47,13 @@ class profile::time_locale {
       match  => 'LANG=',
     }
   } elsif $::os['family'] == 'debian' {
-    if $::os['name'] == 'ubuntu' {
+    if $lang_pack {
       package { $lang_pack: }
     }
 
     class { 'locales':
       locales        => any2array($locale_deb),
-      default_locale => $locale_deb,
+      default_locale => $locale_deb_base,
     }
   }
 

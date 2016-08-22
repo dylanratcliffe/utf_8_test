@@ -177,9 +177,6 @@ profile::time_locale::ntp_servers:
 profile::time_locale::timezone: 'UTC'
 profile::time_locale::locale_rhel: 'ja_JP.utf8'
 profile::time_locale::locale_deb: 'ja_JP.UTF-8'
-profile::time_locale::lang_pack:
-  - language-pack-ja-base
-  - language-pack-ja
 
 profile::base::sysctl_settings:
   kernel.msgmnb:
