@@ -22,8 +22,6 @@ variables:
 
 puppet_enterprise::profile::certificate_authority::client_whitelist:
   - 'master.puppet.vm'
-puppet_enterprise::profile::certificate_authority::client_whitelist:
-  - 'master.puppet.vm'
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
