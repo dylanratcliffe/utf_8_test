@@ -10,6 +10,7 @@ class profile::base (
   $ensure_utf_8_exported  = false,
   $ensure_utf_8_virtual   = false,
   $ensure_utf_8_lookup    = false,
+  $ensure_utf_8_functions = false,
   $utf_8_notify_string    = 'こんにちは',
 )  {
 
@@ -33,6 +34,7 @@ class profile::base (
     ensure_registry     => $ensure_utf_8_registry,
     ensure_exported     => $ensure_utf_8_exported,
     ensure_virtual      => $ensure_utf_8_virtual,
+    ensure_functions    => $ensure_utf_8_functions,
     notify_string       => $utf_8_notify_string,
     lookup_data         => $lookup_data,
   }
