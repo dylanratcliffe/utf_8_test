@@ -55,4 +55,4 @@ mod 'ssh',
 mod 'make_noop',
   :git => 'https://github.com/beergeek/make_noop.git'
 mod 'utf_8',
-  :git => 'https://github.com/dylanratcliffe/utf_8.git'
+  :git => 'https://github.com/beergeek/utf_8.git'
